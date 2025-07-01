@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>URL Shortner</h1>
+        <form id="shorten-form">
+            <div>
+                <label for="url">Enter URL:</label>
+                <input type="url" name="url" id="url">
+            </div>
+            <div>
+                <label for="shortcode">Custom Short URL (Optional)</label>
+                <input type="text" name="shortcode" id="shortcode" required>
+            </div>
+            <button type="submit">Shorten</button>
+        </form>
+        <h2>Shortend URLs</h2>
+        <ul id="shortened-urls"></ul>
+    </div>
+
+    <script>
+        //STEP1:  HERE FIRST WE TAKE THE REFRENSE OF "SHORTEN-FORM" TO GET DATA OF FORM USING NEW FEATURE/WAY -{FORMDATA INTERFACE}.
+        document.getElementById("shorten-form").addEventListener('submit', (event) => {
+            event.preventDefault();                           //PREVENT FORM TO SUBMIT AUTOMATICALLY.
+        //FORMDATA IS AN INTERFACE, USED WITH new KEYWORD, THERE WE NEED TO PASS THE EVNET.TARGETVALUE TO GET DATA..
+            //IT CREATES A FORMDATA OBJECT WITH A MULTIPLE PROPERTIES.    
+            const formData = new FormData(event.target);
+            //console.log(formData.get('url'));        //PASSING THE FIRST LABEL DATA
+
+            const url = formData.get('url');   
+             //!FORMDATA.GET METHOD RETURNS THE FIRST KEY VALUES, AND THE KEY IS OUR NAME ATTRIBUTE.
+            const shortcode = formData.get('shortcode');
+            console.log(url, shortcode);
+        })
+    </script>
+</body>
+</html>
